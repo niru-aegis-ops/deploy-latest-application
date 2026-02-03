@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-latest-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deploy-latest-application
+  template:
+    metadata:
+      labels:
+        app: deploy-latest-application
+    spec:
+      containers:
+      - name: app
+        image: your-registry/your-image:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: PORT
+          value: "5000"
